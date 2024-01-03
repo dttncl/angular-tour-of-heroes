@@ -28,4 +28,10 @@ export class HeroDetailComponent {
     this.heroService.getHero(id)
       .subscribe(hero => this.hero = hero);
   }
+
+  // navigates backward one step in the browser's history stack
+  // using the Location service
+  goBack(): void {
+    this.location.back();
+  }
 }
