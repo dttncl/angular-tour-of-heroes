@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 //import { HEROES } from '../mock-heroes';
 import { Hero } from '../hero';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
 
 @Component({ 
   selector: 'app-heroes',
@@ -14,11 +15,18 @@ import { HeroService } from '../hero.service';
   styleUrl: './heroes.component.css'
 })
 
-export class HeroesComponent {
+export class HeroesComponent implements OnInit {
+
+  constructor(private heroService: HeroService, private messageService: MessageService) {
+    // not the best practice
+    // use ngOnInit instead
+    // this.getHeroes();
+  }
 
   selectedHero?: Hero;
   onSelect(hero: Hero): void{
     this.selectedHero = hero;
+    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
   //hero = 'Windstorm';
   /*hero : Hero = {
@@ -26,12 +34,6 @@ export class HeroesComponent {
     name: 'Windstorm'
   };*/
   heroes: Hero[] = [];
-
-  constructor(private heroService: HeroService) {
-    // not the best practice
-    // use ngOnInit instead
-    // this.getHeroes();
-  }
 
   ngOnInit(): void {
     this.getHeroes();
