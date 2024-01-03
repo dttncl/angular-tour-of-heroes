@@ -1,6 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 //import { HEROES } from '../mock-heroes';
 import { Hero } from '../hero';
 import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
@@ -10,7 +12,7 @@ import { MessageService } from '../message.service';
 @Component({ 
   selector: 'app-heroes',
   standalone: true,
-  imports: [CommonModule,  FormsModule, NgFor, HeroDetailComponent],
+  imports: [CommonModule,  FormsModule, NgFor, HeroDetailComponent, RouterModule],
   templateUrl: './heroes.component.html',
   styleUrl: './heroes.component.css'
 })
